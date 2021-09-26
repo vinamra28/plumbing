@@ -18,6 +18,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/tektoncd/plumbing/catlin/pkg/app"
 	"github.com/tektoncd/plumbing/catlin/pkg/cmd/linter"
+	"github.com/tektoncd/plumbing/catlin/pkg/cmd/scanner"
 	"github.com/tektoncd/plumbing/catlin/pkg/cmd/validate"
 )
 
@@ -32,6 +33,7 @@ func Root(cli app.CLI) *cobra.Command {
 	cmd.AddCommand(
 		validate.Command(cli),
 		linter.Command(cli),
+		scanner.Command(cli),
 	)
 
 	return cmd

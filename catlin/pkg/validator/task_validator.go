@@ -52,13 +52,26 @@ func (t *taskValidator) Validate() Result {
 
 	task := res.(*v1beta1.Task)
 	for _, step := range task.Spec.Steps {
-		result.Append(t.validateStep(step))
+		result.Append(validateStep(step))
 
+	}
+	for _, step := range task.Spec.Steps {
+		fmt.Println(step.Image)
+		scanner(step)
 	}
 	return result
 }
 
-func (t *taskValidator) validateStep(s v1beta1.Step) Result {
+func Scanner(res interface{}) {
+
+	task := res.(*v1beta1.Task)
+	for _, step := range task.Spec.Steps {
+		fmt.Println(step.Image)
+		scanner(step)
+	}
+}
+
+func validateStep(s v1beta1.Step) Result {
 
 	result := Result{}
 	step := s.Name
